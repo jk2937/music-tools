@@ -1,18 +1,20 @@
 import argparse
+import struct
 
 class xm_header:
     def __init__(self, data):
-        self.id_text = data[:17].decode("ASCII")
-        self.module_name = data[17:37].decode("ASCII")
-        
-        self.escape_char = data[37:38]
-        
-        self.tracker_name = data[38:58].decode("ASCII")
-        
-        self.version_number = str(data[59]) + "." + str(data[58])
+        '''
+        ( self.id_text, self.module_name, self.escape_char, self.tracker_name,
+        self.version_number, self.header_size, self.song_length,
+        self.restart_position, self.number_of_channels,
+        self.number_of_patterns, self.number_of_instruments, self.flags,
+        self.default_tempo, self.default_bpm, self.pattern_order_table
+          ) = struct.unpack("<3s20s20s4BH4sH6B", data)
+        '''
+        ( self.id_text, self.module_name, self.escape_char,
+            self.tracker_name, self.version_number,
+            self.header_size ) = struct.unpack("<17s20s1b20s2si", data[:64])
 
-        self.header_size = int.from_bytes(
-            data[60:64], byteorder="little")
         self.song_length = int.from_bytes(
             data[64:66], byteorder="little")
         self.restart_position = int.from_bytes(
@@ -34,11 +36,11 @@ class xm_header:
     def __str__(self):
         out_str = "XM header:\n"
         out_str += "Filename: " + args.filename + "\n"
-        out_str += "ID Text: " + header.id_text + "\n"
-        out_str += "Module name: " + header.module_name + "\n"
-        out_str += "Escape char: " + str(header.escape_char.hex()) + "\n"
-        out_str += "Tracker name: " + header.tracker_name + "\n"
-        out_str += "Version number: " + header.version_number + "\n"
+        out_str += "ID Text: " + str(header.id_text) + "\n"
+        out_str += "Module name: " + str(header.module_name) + "\n"
+        out_str += "Escape char: " + str(header.escape_char) + "\n"
+        out_str += "Tracker name: " + str(header.tracker_name) + "\n"
+        out_str += "Version number: " + str(header.version_number) + "\n"
         out_str += "Header size: " + str(header.header_size) + "\n"
         out_str += "Song length: " + str(header.song_length) + "\n"
         out_str += "Restart position: " + str(header.restart_position) + "\n"
@@ -76,3 +78,4 @@ header = xm_header(in_file_data)
 header.print_info()
 
 print("Done.")
+
