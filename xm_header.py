@@ -3,34 +3,14 @@ import struct
 
 class xm_header:
     def __init__(self, data):
-        '''
+        
         ( self.id_text, self.module_name, self.escape_char, self.tracker_name,
         self.version_number, self.header_size, self.song_length,
         self.restart_position, self.number_of_channels,
         self.number_of_patterns, self.number_of_instruments, self.flags,
-        self.default_tempo, self.default_bpm, self.pattern_order_table
-          ) = struct.unpack("<3s20s20s4BH4sH6B", data)
-        '''
-        ( self.id_text, self.module_name, self.escape_char,
-            self.tracker_name, self.version_number,
-            self.header_size ) = struct.unpack("<17s20s1b20s2si", data[:64])
-
-        self.song_length = int.from_bytes(
-            data[64:66], byteorder="little")
-        self.restart_position = int.from_bytes(
-            data[66:68], byteorder="little")
-        self.number_of_channels = int.from_bytes(
-            data[68:70], byteorder="little")
-        self.number_of_patterns = int.from_bytes(
-            data[70:72], byteorder="little")
-        self.number_of_instruments = int.from_bytes(
-            data[72:74], byteorder="little")
-            
-        self.flags = data[74:76]
+        self.default_tempo, self.default_bpm, 
+          ) = struct.unpack("<17s20s1b20s2sIHHHHH2sHH", data[0:80])
         
-        self.default_tempo = int.from_bytes(data[76:78], byteorder="little")
-        self.default_bpm = int.from_bytes(data[78:80], byteorder="little")
-            
         self.pattern_order_table = data[80:80 + self.song_length]
         
     def __str__(self):
