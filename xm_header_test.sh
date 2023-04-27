@@ -1,5 +1,5 @@
 echo $(basename "$0") "- Begin."
-for file in nitrotracker-songs/*
+for file in xm-songs/*
 do
 	echo ""
 	echo $(basename "$0") "- Executing: python xm_header.py \"$file\""

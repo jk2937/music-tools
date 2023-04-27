@@ -13,7 +13,9 @@ class Pattern:
     def __init__(self, length, channels):
         self.length = length
         self.channels = channels
-        self.data = [[Note(0, 0, 0, 0, 0) for i in range(length)] for j in range(channels)]
+        self.data = [
+            [Note() for i in range(length)] for j in range(channels)
+        ]
 
     def __str__(self):
         out = ''
@@ -31,7 +33,8 @@ class Pattern:
                                          effect_type, effect_parameter)
 
 class Note:
-    def __init__(self, note, instrument, volume, effect_type, effect_parameter):
+    def __init__(self, note=0, instrument=0, volume=0, effect_type=0,
+                 effect_parameter=0):
         self.note = note
         self.instrument = instrument
         self.volume = volume
@@ -46,7 +49,7 @@ m.AddPattern()
 print(m.patterns[0])
 
 p = m.patterns[0]
-p.data[1][0] = Note(1, 0, 0, 0, 0)
+p.data[2][0] = Note(1)
 print(p)
 
 print('Done.')
