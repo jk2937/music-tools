@@ -70,13 +70,6 @@ music_module.py:
 This file contains work-in-progress code that creates musical pattern data
 loosely based around the .xm file format.
 
-musical_spelling.py:
-
-This file contains work-in-progress code for converting human readable musical
-spellings as integer sets, as in musical serialism. This code will be the basis
-of a musical calculator, which will be able to quickly produce practical 
-information about musical figures.
-
 xm_header.py:
 
 This file contains work-in-progress code that displays information from .xm
@@ -88,3 +81,12 @@ xm_header_test.sh:
 
 This is a bash script that opens multiple files with xm_header.py. The files 
 need to be in a folder called xm-songs.
+
+Music Theory:
+
+musical_spelling.py:
+
+This file contains work-in-progress code for converting human readable musical
+spellings as integer sets, as in musical serialism. This code will be the basis
+of a musical calculator, which will be able to quickly produce practical 
+information about musical figures.
