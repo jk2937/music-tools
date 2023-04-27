@@ -87,6 +87,6 @@ Music Theory:
 musical_spelling.py:
 
 This file contains work-in-progress code for converting human readable musical
-spellings as integer sets, as in musical serialism. This code will be the basis
-of a musical calculator, which will be able to quickly produce practical 
+spellings into integer sets, as in musical serialism. This code will be the 
+basis of a musical calculator, which will be able to quickly produce practical 
 information about musical figures.
