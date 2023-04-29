@@ -27,9 +27,9 @@ class Pattern:
 
         return out
 
-    def AddNote(self, channel, step, note, instrument, volume, effect_type,
-                effect_parameter):
-        self.data[channel, step] = Note(note, instrument, volume,
+    def AddNote(self, channel, step, note=0, instrument=0, volume=0, effect_type=0,
+                effect_parameter=0):
+        self.data[channel][step] = Note(note, instrument, volume,
                                          effect_type, effect_parameter)
 
 class Note:
@@ -43,36 +43,29 @@ class Note:
 
     def __str__(self):
         return str(self.note)
-        
-class NoteIntegerList:
-	pass
-	
-class PitchClassIntegerList:
-	pass
-	
-class OrderedNoteSet(NoteIntegerList):
-	pass
-	
-class UnorderedNoteSet(NoteIntegerList):
-	pass	
-	
-class OrderedPitchClassSet(PitchClassIntegerList):
-	pass
-	
-class UnorderedPitchClassSet(PitchClassIntegerList):
-	pass
 
-def listToBasicPattern(list):
+def listToBasicPattern(_list):
 	'''Takes a list of notes (int) and creates a Pattern with the notes
-	using one channel and the length of the list.'''
-	return Pattern
+	using one channel and the length of the list.
 	
-def rhythmToBasicPattern(list):
+	EX: p = listToBasicPattern([0, 2, 4, 5, 7, 9, 11]) returns a pattern
+	with a length of 9 steps and with one channel.
+	'''
+	p = Pattern(len(_list), 1)
+	for i in range(len(_list)):
+		p.AddNote(0, int(i), int(_list[i]))
+	return p
+	
+def rhythmToBasicPattern(_list):
 	'''Takes a list with 1 representing a note on, 0 representing a rest
 	or note continuation, and -1 representing a note off and create a
 	pattern with one channel and the length of the list playing the
-	chromatic scale using that rhythm.'''
-	return Pattern
+	chromatic scale using that rhythm.
+	
+	EX: p = rythmToBasicPatter([1, 0, -1, 0, 1, 0 , -1, 0, 1, -1, 1, -1, 1, 0, -1, 0])
+	'''
+	
+	return p
 	
 def expandPattern(PatternA, multiplier):
 	'''Takes creates a new pattern whose length is equal to the input
@@ -123,7 +116,10 @@ m.AddPattern()
 print(m.patterns[0])
 
 p = m.patterns[0]
-p.data[2][0] = Note(1)
+p.data[1][1] = Note(1)
 print(p)
+
+p2 = listToBasicPattern([0, 2, 4, 5, 7, 9, 11])
+print(p2)
 
 print('Done.')
