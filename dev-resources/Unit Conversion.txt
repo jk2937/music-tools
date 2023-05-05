@@ -1,0 +1,9 @@
+Hertz
+Samples
+Seconds
+Microseconds
+steps
+ticks
+
+Midi:
+1 quarter note = 24 Timing Clock messages

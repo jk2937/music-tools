@@ -1,0 +1,11 @@
+Prototyping, brainstorming, researching:
+Reading midi docs
+Reading .xm docs
+Learning Python
+
+Basic timeline of the engine protype:
+(This prototype will include a basic midi step sequencer with a piano roll interface and a built synth.)
+1. Midi pattern generation
+2. Midi visualization
+3. GUI editing, full .midi support (saving and loading)
+4. Synthesizer implementation, exporting .wav files, real-time audio

@@ -28,6 +28,9 @@ giving them a listen!
 
 About:
 
+This repository contains my open-source project call music-tools, a collection
+of tools for making music. Included in this collection is a step s
+
 This repository, called music-tools, contains miscellaneous Python scripts
 related to music. My goal with this repository is to develop the code into 
 a suite of music software which will include a step-sequencer, a synthesizer
